@@ -1,0 +1,27 @@
+<js-ng-confirm-dialog 
+    [text]="'Estas seguro que quieres cancelar'" 
+    *ngIf="cancelConfirmation" 
+    (onConfirm)="doCancel()" 
+    (onCancel)="cancelConfirmation = false">
+
+</js-ng-confirm-dialog>
+
+<js-ng-confirm-dialog 
+    [text]="'Estas seguro que quieres salvar'" 
+    *ngIf="saveConfirmation" 
+    (onConfirm)="doSave()" 
+    (onCancel)="saveConfirmation = false">
+
+</js-ng-confirm-dialog>
+
+<js-ng-popup [popupOptions]="popupOptions" (onCancel)="cancelConfirmation = true" (onSave)="saveConfirmation = true">
+
+    <div *ngFor="let profileIndex of loggedUser.profiles">
+
+        {{loggedUser.profilesDetails[profileIndex.id]?.name}}
+        <input type="color" [value]="profileIndex.color" (change)="onChangeColor($event, profileIndex.id)">
+
+        <button *ngIf="profileIndex.id !== loggedUser.id" (click)="onDeleteProfile(profileIndex.id)">delete</button>
+    </div>
+
+</js-ng-popup>

@@ -1,0 +1,14 @@
+<form (ngSubmit)="onUpdate()" [formGroup]="userInfoForm">
+
+    <input type="text" id="firstName" name="firstName" formControlName="firstName">
+    <input type="text" id="lastName" name="lastName" formControlName="lastName">
+    <input type="text" id="email" name="email" formControlName="email">
+
+    <select name="lang" id="lang" formControlName="lang">
+        <option *ngFor="let lang of langs" [value]="lang">{{ lang | JsNgTranslator | async }}</option>
+    </select>
+    
+    <button nbButton="secondary">{{ 'cancel' | JsNgTranslator | async }}</button>
+    <button nbButton="primary">{{ 'update' | JsNgTranslator | async }}</button>
+
+</form>
